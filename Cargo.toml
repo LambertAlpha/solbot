@@ -1,0 +1,59 @@
+[package]
+name = "solbot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Solana相关
+solana-client = "1.17"
+solana-sdk = "1.17"
+solana-program = "1.17"
+solana-transaction-status = "1.17"
+spl-token = "4.0"
+spl-associated-token-account = "2.2"
+
+# 异步运行时
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+
+# HTTP客户端
+reqwest = { version = "0.11", features = ["json", "stream"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# WebSocket
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+
+# 日志和错误处理
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+
+# 配置管理
+toml = "0.8"
+config = "0.14"
+
+# 时间处理
+chrono = { version = "0.4", features = ["serde"] }
+
+# 数学计算
+num-traits = "0.2"
+
+# 缓存
+lru = "0.12"
+
+# 并发工具
+dashmap = "5.5"
+parking_lot = "0.12"
+
+# 随机数生成
+rand = "0.8"
+
+# 系统信息
+sysinfo = "0.30"
+
+[dev-dependencies]
+tempfile = "3.8"

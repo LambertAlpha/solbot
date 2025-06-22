@@ -1,0 +1,56 @@
+# Solana DEX套利监控系统配置文件
+
+[solana]
+# Solana RPC节点URL
+rpc_url = "https://api.mainnet-beta.solana.com"
+# WebSocket URL
+ws_url = "wss://api.mainnet-beta.solana.com"
+# 交易确认级别
+commitment = "confirmed"
+
+[wallet]
+# 钱包私钥文件路径
+keypair_path = "./wallet/keypair.json"
+# 最大余额使用比例 (0.0 - 1.0)
+max_balance_usage = 0.8
+
+[monitor]
+# 价格更新间隔 (毫秒)
+price_update_interval_ms = 1000
+# 最大价格过期时间 (毫秒)
+max_price_staleness_ms = 10000
+# 启用的DEX列表
+enabled_dexs = ["raydium", "orca", "jupiter"]
+
+[strategy]
+# 最小利润阈值 (百分比)
+min_profit_threshold = 0.5
+# 最大交易金额 (lamports)
+max_trade_amount = 1000000000
+# 滑点容忍度 (百分比)
+slippage_tolerance = 0.3
+
+[risk]
+# 最大持仓大小 (lamports)
+max_position_size = 10000000000
+# 最大每日损失 (lamports)
+max_daily_loss = 1000000000
+# 最大滑点 (百分比)
+max_slippage = 1.0
+# 最小流动性要求 (lamports)
+min_liquidity = 100000000000
+
+[logging]
+# 日志级别: trace, debug, info, warn, error
+level = "info"
+# 日志文件路径 (可选)
+file = "./logs/arbitrage.log"
+
+# 可选：数据库配置
+[database]
+# 启用数据库功能
+enabled = false
+# PostgreSQL连接URL
+postgres_url = "postgresql://user:password@localhost/arbitrage"
+# Redis连接URL
+redis_url = "redis://localhost:6379" 
