@@ -55,7 +55,7 @@ impl RaydiumClient {
         
         Self {
             client,
-            base_url: "https://api.raydium.io/v2".to_string(),
+            base_url: "https://api-v3.raydium.io/".to_string(),
             pools_cache: Arc::new(Mutex::new(HashMap::new())),
             cache_timestamp: Arc::new(Mutex::new(0)),
             cache_ttl: 300, // 5分钟缓存

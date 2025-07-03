@@ -68,7 +68,7 @@ impl JupiterClient {
 
         Self {
             client,
-            base_url: "https://quote-api.jup.ag/v6".to_string(),
+            base_url: "https://lite-api.jup.ag".to_string(),
             timeout: Duration::from_secs(5),
         }
     }

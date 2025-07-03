@@ -64,7 +64,7 @@ impl OrcaClient {
     /// 创建新的Orca客户端
     pub fn new() -> Self {
         let client = Client::new();
-        
+            
         Self {
             client,
             base_url: "https://api.orca.so".to_string(),
@@ -105,7 +105,7 @@ impl OrcaClient {
             .send()
             .await
             .map_err(|e| anyhow!("Failed to fetch Orca pools: {}", e))?;
-        
+            
         if !response.status().is_success() {
             return Err(anyhow!("Orca API returned error: {}", response.status()));
         }
@@ -212,7 +212,7 @@ impl OrcaClient {
             .send()
             .await
             .map_err(|e| anyhow!("Failed to get Orca quote: {}", e))?;
-        
+            
         if !response.status().is_success() {
             return Err(anyhow!("Orca quote API returned error: {}", response.status()));
         }
@@ -245,13 +245,13 @@ impl DexInterface for OrcaClient {
             Err(_) => {
                 // 如果找不到池，返回模拟价格
                 let symbol = format!("{}/{}", input_mint, output_mint);
-                Ok(Price::new(
+                        Ok(Price::new(
                     "orca".to_string(),
-                    symbol,
+                            symbol,
                     100.0,
                     100.1,
                     1000000.0,
-                ))
+                        ))
             }
         }
     }
@@ -293,7 +293,7 @@ impl DexInterface for OrcaClient {
             .get(&url)
             .timeout(Duration::from_secs(5))
             .send()
-            .await
+            .await 
         {
             Ok(response) => Ok(response.status().is_success()),
             Err(_) => Ok(false),
@@ -346,8 +346,8 @@ mod tests {
         let (price, amount_out) = client.calculate_whirlpool_price(&pool, &input_mint, amount).unwrap();
         
         // 验证价格合理性
-        assert!(price > 0.0);
-        assert!(amount_out > 0);
+                assert!(price > 0.0);
+                assert!(amount_out > 0);
         
         // 验证流动性估算
         let liquidity = client.estimate_liquidity(&pool);

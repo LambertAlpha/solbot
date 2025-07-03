@@ -1,5 +1,5 @@
 //! 价格监控器
-//!
+//! 
 //! 本模块负责实时监控多个DEX的价格数据，是套利系统的基础数据源。
 //! 提供高效的价格获取、缓存和分发功能。
 //!
@@ -219,7 +219,7 @@ impl PriceFeed {
                                 let mut stats_guard = stats.lock().await;
                                 stats_guard.update_price_fetch(false, 0.0);
                                 drop(stats_guard);
-                            }
+            }
                         }
                     }
                 }
@@ -242,7 +242,7 @@ impl PriceFeed {
         let mut task_guard = self.monitoring_task.lock().await;
         if let Some(task) = task_guard.take() {
             task.abort();
-        }
+            }
         info!("Price feed monitoring stopped");
         Ok(())
     }
