@@ -4,6 +4,7 @@
 //! 提供最优路径和最佳价格发现
 
 use super::{DexInterface, Price, TradeInfo};
+use crate::utils::wallet::Wallet;
 use anyhow::{Result, anyhow};
 use reqwest::Client;
 use serde::Deserialize;
@@ -87,7 +88,7 @@ impl JupiterClient {
         amount: u64,
     ) -> Result<JupiterQuoteResponse> {
         let url = format!(
-            "{}/quote?inputMint={}&outputMint={}&amount={}&slippageBps=50",
+            "{}/swap/v1/quote?inputMint={}&outputMint={}&amount={}&slippageBps=50",
             self.base_url,
             input_mint.to_string(),
             output_mint.to_string(),
@@ -233,7 +234,7 @@ impl DexInterface for JupiterClient {
 
     /// 健康检查
     async fn health_check(&self) -> Result<bool> {
-        let url = format!("{}/health", self.base_url);
+        let url = format!("{}/swap/v1/quote?inputMint=So11111111111111111111111111111111111111112&outputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&amount=1000000&slippageBps=50", self.base_url);
 
         match self.client.get(&url).timeout(self.timeout).send().await {
             Ok(response) => Ok(response.status().is_success()),
